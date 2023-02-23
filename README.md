@@ -9,7 +9,7 @@ member
 - password
 - nickname
 - created_at
-- modified_at
+- updated_at
 - withdrawal
 - withdrawal_at
 ```
@@ -44,7 +44,7 @@ todo
 - content
 - status
 - created_at
-- modified_at
+- updated_at
 ```
 
 #### TODO 작성
