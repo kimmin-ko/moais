@@ -14,12 +14,12 @@ member
 - withdrawal_at
 ```
 
-#### 회원 가입
+#### 회원 가입 (완)
 - account_id, password, nickname을 입력받아 회원 가입한다.
 - account_id, nickname은 고유해야 한다.
 - password는 암호화 되어 저장해야 한다.
 
-#### 로그인
+#### 로그인 (완)
 - account_id, password를 입력하여 로그인한다.
 - account_id로 member를 조회한다.
 - 탈퇴한 회원일 경우 401 코드를 반환한다.

@@ -25,3 +25,7 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
         default_batch_fetch_size: 500
     defer-datasource-initialization: true
+
+jwt:
+  secret: moais
+  expiration-time: 86_400_000

@@ -1,5 +1,6 @@
 package com.moais.todo.domain;
 
+import com.moais.todo.domain.base.BaseTimeEntity;
 import lombok.*;
 import org.springframework.util.Assert;
 

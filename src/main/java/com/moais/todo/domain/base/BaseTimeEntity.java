@@ -1,4 +1,4 @@
-package com.moais.todo.domain;
+package com.moais.todo.domain.base;
 
 import lombok.AccessLevel;
 import lombok.Getter;

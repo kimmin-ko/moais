@@ -1,5 +1,6 @@
 package com.moais.todo.domain;
 
+import com.moais.todo.domain.base.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "todo")
 @Entity
-public class Todo extends BaseTimeEntity{
+public class Todo extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
