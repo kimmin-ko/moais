@@ -11,7 +11,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-@Getter(AccessLevel.PROTECTED)
+@Getter(AccessLevel.PUBLIC)
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public abstract class BaseTimeEntity {
