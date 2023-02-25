@@ -30,6 +30,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             LoginRequest loginRequest = new ObjectMapper().readValue(request.getInputStream(), LoginRequest.class);
+
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     loginRequest.getAccountId(),
                     loginRequest.getPassword(),
@@ -43,7 +44,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
         DefaultUserDetails user = (DefaultUserDetails) authResult.getPrincipal();
 
         String jwt = Jwts.builder()

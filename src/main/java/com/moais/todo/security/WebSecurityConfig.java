@@ -12,14 +12,16 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig {
 
-    private final JwtProperty jwtProperty;
     private final AuthenticationConfiguration authenticationConfiguration;
+
+    private final JwtProperty jwtProperty;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -30,9 +32,11 @@ public class WebSecurityConfig {
 
         http
                 .authorizeRequests()
+                .antMatchers("/members/withdrawal").authenticated()
                 .anyRequest().permitAll()
                 .and()
-                .addFilter(getLoginFilter());
+                .addFilter(getLoginFilter())
+                .addFilterBefore(getJwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // h2-console 화면을 보기 위한 설정
         http.headers().frameOptions().disable();
@@ -55,6 +59,10 @@ public class WebSecurityConfig {
         LoginFilter loginFilter = new LoginFilter(jwtProperty);
         loginFilter.setAuthenticationManager(authenticationManager());
         return loginFilter;
+    }
+
+    private JwtAuthorizationFilter getJwtAuthorizationFilter() {
+        return new JwtAuthorizationFilter(jwtProperty);
     }
 
 }

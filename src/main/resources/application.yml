@@ -29,3 +29,10 @@ spring:
 jwt:
   secret: moais
   expiration-time: 86_400_000
+
+logging:
+  level:
+    root: info
+    com:
+      moais:
+        todo: debug

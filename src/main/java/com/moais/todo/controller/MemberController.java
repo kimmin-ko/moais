@@ -27,4 +27,10 @@ public class MemberController {
         return CommonResponse.withBody(new MemberJoinResponse(result));
     }
 
+    @PostMapping("/withdrawal")
+    public CommonResponse<Void> withdrawal() {
+        System.out.println("인가 완료");
+        return CommonResponse.emptyBody();
+    }
+
 }
