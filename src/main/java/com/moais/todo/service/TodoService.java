@@ -2,9 +2,9 @@ package com.moais.todo.service;
 
 import com.moais.todo.domain.Member;
 import com.moais.todo.domain.Todo;
-import com.moais.todo.domain.TodoStatus;
 import com.moais.todo.errors.exceptions.NotFoundException;
 import com.moais.todo.persistence.TodoRepository;
+import com.moais.todo.service.dto.TodoChangeStatusCommand;
 import com.moais.todo.service.dto.TodoChangeStatusResult;
 import com.moais.todo.service.dto.TodoWriteCommand;
 import com.moais.todo.service.dto.TodoWriteResult;
@@ -53,5 +53,12 @@ public class TodoService {
     public Todo getByTodoIdAndMemberId(Long todoId, Long memberId) {
         return findByTodoIdAndMemberId(todoId, memberId)
                 .orElseThrow(() -> new NotFoundException(String.format("Todo not found. id: %d, member id: %d", todoId, memberId)));
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Todo> findLatestOneByMemberId(Long memberId) {
+        Assert.notNull(memberId, "Member id must not be null.");
+        Member member = memberService.getById(memberId);
+        return todoRepository.findFirstByMemberOrderByCreatedAtDesc(member);
     }
 }

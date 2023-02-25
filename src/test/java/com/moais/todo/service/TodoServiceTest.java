@@ -5,6 +5,7 @@ import com.moais.todo.domain.Todo;
 import com.moais.todo.domain.TodoStatus;
 import com.moais.todo.persistence.MemberRepository;
 import com.moais.todo.persistence.TodoRepository;
+import com.moais.todo.service.dto.TodoChangeStatusCommand;
 import com.moais.todo.service.dto.TodoWriteCommand;
 import com.moais.todo.service.dto.TodoWriteResult;
 import org.junit.jupiter.api.AfterEach;
@@ -89,6 +90,19 @@ class TodoServiceTest {
 
         Todo target = optionalTarget.get();
         assertThat(target.getStatus()).isEqualTo(TodoStatus.DONE);
+    }
+
+    @DisplayName("")
+    void test() {
+        // given
+        Member writer = new Member(accountId, password, nickname);
+        memberRepository.save(writer);
+
+        // when
+        todoService.findLatestOneByMemberId(writer.getId());
+
+        // then
+
     }
 
 }

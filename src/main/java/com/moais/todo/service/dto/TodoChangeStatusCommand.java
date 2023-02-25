@@ -1,4 +1,4 @@
-package com.moais.todo.service;
+package com.moais.todo.service.dto;
 
 import com.moais.todo.domain.TodoStatus;
 import lombok.Getter;

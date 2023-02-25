@@ -2,12 +2,14 @@ package com.moais.todo.controller;
 
 import com.moais.todo.common.CommonResponse;
 import com.moais.todo.controller.dto.TodoChangeStatusResponse;
+import com.moais.todo.controller.dto.TodoResponse;
 import com.moais.todo.controller.dto.TodoWriteRequest;
 import com.moais.todo.controller.dto.TodoWriteResponse;
+import com.moais.todo.domain.Todo;
 import com.moais.todo.domain.TodoStatus;
 import com.moais.todo.security.AuthorizedMember;
-import com.moais.todo.service.TodoChangeStatusCommand;
 import com.moais.todo.service.TodoService;
+import com.moais.todo.service.dto.TodoChangeStatusCommand;
 import com.moais.todo.service.dto.TodoChangeStatusResult;
 import com.moais.todo.service.dto.TodoWriteCommand;
 import com.moais.todo.service.dto.TodoWriteResult;
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RequestMapping("/todos")
@@ -40,6 +43,19 @@ public class TodoController {
         TodoChangeStatusCommand command = new TodoChangeStatusCommand(memberId, id, status);
         TodoChangeStatusResult result = todoService.changeStatus(command);
         return CommonResponse.withBody(new TodoChangeStatusResponse(result));
+    }
+
+    @GetMapping("/latest")
+    public CommonResponse<TodoResponse> getLatestOne() {
+        Long memberId = authorizedMember.getMemberId();
+        Optional<Todo> todoOptional = todoService.findLatestOneByMemberId(memberId);
+
+        if (todoOptional.isPresent()) {
+            Todo latestTodo = todoOptional.get();
+            return CommonResponse.withBody(new TodoResponse(latestTodo));
+        }
+
+        return CommonResponse.emptyBody();
     }
 
 }
