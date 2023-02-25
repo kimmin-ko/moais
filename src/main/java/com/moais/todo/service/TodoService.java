@@ -9,6 +9,8 @@ import com.moais.todo.service.dto.TodoChangeStatusResult;
 import com.moais.todo.service.dto.TodoWriteCommand;
 import com.moais.todo.service.dto.TodoWriteResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -60,5 +62,12 @@ public class TodoService {
         Assert.notNull(memberId, "Member id must not be null.");
         Member member = memberService.getById(memberId);
         return todoRepository.findFirstByMemberOrderByCreatedAtDesc(member);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Todo> findAllByMemberId(Long memberId, Pageable pageable) {
+        Assert.notNull(memberId, "Member id must not be null.");
+        Member member = memberService.getById(memberId);
+        return todoRepository.findAllByMember(member, pageable);
     }
 }

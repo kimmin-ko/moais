@@ -95,7 +95,7 @@ class MemberServiceTest {
     @DisplayName("회원 탈퇴가 정상적으로 동작한다.")
     void withdrawal_test() {
         // given
-        Member member = new Member(accountId, password, nickname);
+        Member member = new Member(accountId, passwordEncoder.encode(password), nickname);
         memberRepository.save(member);
 
         // when
@@ -113,7 +113,7 @@ class MemberServiceTest {
     @DisplayName("이미 탈퇴한 회원은 탈퇴할 수 없다.")
     void withdrawal_fail_test() {
         // given
-        Member member = new Member(accountId, password, nickname);
+        Member member = new Member(accountId, passwordEncoder.encode(password), nickname);
         memberRepository.save(member);
 
         memberService.withdrawal(member.getId(), password);

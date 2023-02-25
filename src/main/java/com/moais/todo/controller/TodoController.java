@@ -14,9 +14,12 @@ import com.moais.todo.service.dto.TodoChangeStatusResult;
 import com.moais.todo.service.dto.TodoWriteCommand;
 import com.moais.todo.service.dto.TodoWriteResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -58,4 +61,11 @@ public class TodoController {
         return CommonResponse.emptyBody();
     }
 
+    @GetMapping
+    public CommonResponse<List<TodoResponse>> findAll(Pageable pageable) {
+        Long memberId = authorizedMember.getMemberId();
+        Page<Todo> todos = todoService.findAllByMemberId(memberId, pageable);
+        List<TodoResponse> responses = todos.map(TodoResponse::new).getContent();
+        return CommonResponse.withPaging(responses, todos);
+    }
 }

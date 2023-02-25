@@ -23,6 +23,7 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final AuthorizedMember authorizedMember;
+
     private final MemberService memberService;
 
     @PostMapping
@@ -36,7 +37,6 @@ public class MemberController {
                                                                HttpServletResponse httpResponse) {
         boolean result = memberService.withdrawal(authorizedMember.getMemberId(), request.getPassword());
         httpResponse.setHeader("token", "");
-        httpResponse.setHeader("memberId", "");
         return CommonResponse.withBody(new MemberWithdrawalResponse(result));
     }
 
