@@ -47,6 +47,15 @@ public class Member extends BaseTimeEntity {
         this.nickname = nickname;
     }
 
+    // functional //
+    public void withdrawal() {
+        if (this.withdrawal) {
+            return;
+        }
+        this.withdrawal = true;
+        this.withdrawalAt = LocalDateTime.now();
+    }
+
     // verify //
     private void verifyAccountId(String accountId) {
         Assert.hasText(accountId, "Account id must not be null or empty.");

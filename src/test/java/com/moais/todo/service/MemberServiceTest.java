@@ -28,6 +28,10 @@ class MemberServiceTest {
     @Autowired
     MemberRepository memberRepository;
 
+    String accountId = "account1234";
+    String password = "password1234";
+    String nickname = "nickname1234";
+
     @AfterEach
     void cleanup() {
         System.out.println("----- CLEANUP START -----");
@@ -39,9 +43,6 @@ class MemberServiceTest {
     @DisplayName("회원가입이 정상 동작한다.")
     void join_test() {
         // given
-        String accountId = "account1234";
-        String password = "password1234";
-        String nickname = "nickname1234";
         MemberJoinCommand command = new MemberJoinCommand(accountId, password, nickname);
 
         // when
@@ -64,10 +65,6 @@ class MemberServiceTest {
     @DisplayName("회원가입 시 account id는 중복될 수 없다.")
     void exists_account_id_fail_test() {
         // given
-        String accountId = "account1234";
-        String password = "password1234";
-        String nickname = "nickname1234";
-
         MemberJoinCommand memberJoinCommand = new MemberJoinCommand(accountId, password, nickname);
         memberService.join(memberJoinCommand);
 
@@ -82,10 +79,6 @@ class MemberServiceTest {
     @DisplayName("회원가입 시 nickname은 중복될 수 없다.")
     void exists_nickname_fail_test() {
         // given
-        String accountId = "account1234";
-        String password = "password1234";
-        String nickname = "nickname1234";
-
         memberService.join(new MemberJoinCommand(accountId, password, nickname));
 
         String notDuplicatedAccountId = "account4321";
@@ -96,6 +89,53 @@ class MemberServiceTest {
                 .as("Check the nickname duplicate verification code.")
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Nickname already exists.");
+    }
+
+    @Test
+    @DisplayName("회원 탈퇴가 정상적으로 동작한다.")
+    void withdrawal_test() {
+        // given
+        Member member = new Member(accountId, password, nickname);
+        memberRepository.save(member);
+
+        // when
+        boolean result = memberService.withdrawal(member.getId(), password);
+
+        // then
+        assertThat(result).isTrue();
+
+        Member target = memberService.getById(member.getId());
+        assertThat(target.isWithdrawal()).isTrue();
+        assertThat(target.getWithdrawalAt()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("이미 탈퇴한 회원은 탈퇴할 수 없다.")
+    void withdrawal_fail_test() {
+        // given
+        Member member = new Member(accountId, password, nickname);
+        memberRepository.save(member);
+
+        memberService.withdrawal(member.getId(), password);
+
+        // when
+        boolean result = memberService.withdrawal(member.getId(), password);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("비밀번호가 일치하지 않으면 회원탈퇴가 실패한다.")
+    void withdrawal_password_not_match_fail_test() {
+        // given
+        Member member = new Member(accountId, password, nickname);
+        memberRepository.save(member);
+
+        // when & then
+        assertThatThrownBy(() -> memberService.withdrawal(member.getId(), "invalid password"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Passwords do not match.");
     }
 
 }
