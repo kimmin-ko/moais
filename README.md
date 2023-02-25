@@ -1,7 +1,89 @@
-## 
+## Projects
+- Java 11 (corretto)
+- Spring Boot 2.7.8
+- Spring Security
+- Spring Data Jpa
+- H2 Database
+- JUnit 5
+
+## App Start
+```./gradlew bootRun```
+
+## API 사용 방법
+
+### 회원가입
+- URI: POST http://127.0.0.1:8080/members
+- Request Body
+```json
+{
+  "accountId": "tester",
+  "password": "tester1234",
+  "nickname": "tester"
+}
+```
+
+### 로그인
+- URI: POST http://127.0.0.1:8080/login
+- Request Body:
+```json
+{
+  "accountId": "tester",
+  "password": "tester1234"
+}
+```
+- Response Header
+  - key: token 
+  - value: [JWT]
+
+### 회원 탈퇴
+- URI: POST http://127.0.0.1:8080/members/withdrawal
+- Request Header:
+  - key: Authorization
+  - value: Bearer [JWT]
+- Request Body:
+```json
+{
+    "password": "tester1234"
+}
+```
+
+### TODO 작성
+- URI: POST http://127.0.0.1:8080/todos
+- Request Header:
+  - key: Authorization
+  - value: Bearer [JWT]
+- Request Body:
+```json
+{
+  "title": "title test",
+  "content": "content test"
+}
+```
+
+### TODO 상태 변경
+- URI: PATCH http://127.0.0.1:8080/todos/{id}/status/{status}
+  - id: todo id
+  - status: TO_DO, IN_PROGRESS, DONE
+- Request Header:
+  - key: Authorization
+  - value: Bearer [JWT]
+
+### 가장 최근 TODO 단건 조회
+- URI: GET http://127.0.0.1:8080/todos/latest
+- Request Header:
+  - key: Authorization
+  - value: Bearer [JWT]
+
+### TODO 목록 조회
+- URI: GET http://127.0.0.1:8080/todos?page=0&size=5&sort=createdAt,desc
+  - page: 페이지 번호
+  - size: 가져올 데이터 개수
+  - sort: 정렬 기준 및 방법
+- Request Header:
+  - key: Authorization
+  - value: Bearer [JWT]
 
 ## 기능 요구사항
-
 ### 회원
 
 ```
