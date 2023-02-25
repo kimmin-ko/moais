@@ -33,6 +33,7 @@ public class WebSecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/members/withdrawal").authenticated()
+                .antMatchers("/todos/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .addFilter(getLoginFilter())

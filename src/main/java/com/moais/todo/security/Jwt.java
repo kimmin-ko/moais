@@ -14,7 +14,6 @@ public final class Jwt {
         this.isValid = isJwtValid(token, secret);
     }
 
-
     public boolean isValid() {
         return this.isValid;
     }

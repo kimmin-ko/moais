@@ -54,6 +54,5 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                 .compact();
 
         response.setHeader("token", jwt);
-        response.setHeader("memberId", user.getMemberId());
     }
 }
