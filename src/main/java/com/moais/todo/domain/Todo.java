@@ -2,10 +2,12 @@ package com.moais.todo.domain;
 
 import com.moais.todo.domain.base.BaseTimeEntity;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
+@Slf4j
 @Getter
 @ToString(exclude = "member")
 @EqualsAndHashCode(of = "id", callSuper = false)
@@ -45,6 +47,15 @@ public class Todo extends BaseTimeEntity {
         this.title = title;
         this.content = content;
         this.status = TodoStatus.TO_DO;
+    }
+
+    // change //
+    public void changeStatus(TodoStatus status) {
+        if (status == null) {
+            log.warn("status is null.");
+            return;
+        }
+        this.status = status;
     }
 
     // getter //
