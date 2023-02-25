@@ -1,13 +1,14 @@
-package com.moais.todo.service;
+package com.moais.todo.service.todo;
 
 import com.moais.todo.domain.Member;
 import com.moais.todo.domain.Todo;
 import com.moais.todo.errors.exceptions.NotFoundException;
 import com.moais.todo.persistence.TodoRepository;
-import com.moais.todo.service.dto.TodoChangeStatusCommand;
-import com.moais.todo.service.dto.TodoChangeStatusResult;
-import com.moais.todo.service.dto.TodoWriteCommand;
-import com.moais.todo.service.dto.TodoWriteResult;
+import com.moais.todo.service.todo.dto.TodoChangeStatusCommand;
+import com.moais.todo.service.todo.dto.TodoChangeStatusResult;
+import com.moais.todo.service.todo.dto.TodoWriteCommand;
+import com.moais.todo.service.todo.dto.TodoWriteResult;
+import com.moais.todo.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

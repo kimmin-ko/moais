@@ -1,4 +1,4 @@
-package com.moais.todo.service.dto;
+package com.moais.todo.service.todo.dto;
 
 import lombok.Getter;
 import org.springframework.util.Assert;

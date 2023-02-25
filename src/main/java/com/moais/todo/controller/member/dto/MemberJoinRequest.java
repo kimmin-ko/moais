@@ -1,6 +1,6 @@
-package com.moais.todo.controller.dto;
+package com.moais.todo.controller.member.dto;
 
-import com.moais.todo.service.dto.MemberJoinCommand;
+import com.moais.todo.service.member.dto.MemberJoinCommand;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;

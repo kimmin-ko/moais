@@ -1,8 +1,10 @@
-package com.moais.todo.security;
+package com.moais.todo.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moais.todo.errors.exceptions.ServerException;
 import com.moais.todo.properties.JwtProperty;
+import com.moais.todo.security.DefaultUserDetails;
+import com.moais.todo.security.filter.dto.LoginRequest;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

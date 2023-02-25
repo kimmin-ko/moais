@@ -1,7 +1,7 @@
-package com.moais.todo.controller.dto;
+package com.moais.todo.controller.todo.dto;
 
 import com.moais.todo.domain.TodoStatus;
-import com.moais.todo.service.dto.TodoChangeStatusResult;
+import com.moais.todo.service.todo.dto.TodoChangeStatusResult;
 import lombok.Getter;
 
 @Getter

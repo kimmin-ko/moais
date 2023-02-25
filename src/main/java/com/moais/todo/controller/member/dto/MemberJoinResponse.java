@@ -1,6 +1,6 @@
-package com.moais.todo.controller.dto;
+package com.moais.todo.controller.member.dto;
 
-import com.moais.todo.service.dto.MemberJoinResult;
+import com.moais.todo.service.member.dto.MemberJoinResult;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

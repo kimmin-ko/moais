@@ -1,13 +1,13 @@
-package com.moais.todo.controller;
+package com.moais.todo.controller.member;
 
 import com.moais.todo.common.CommonResponse;
-import com.moais.todo.controller.dto.MemberJoinRequest;
-import com.moais.todo.controller.dto.MemberJoinResponse;
-import com.moais.todo.controller.dto.MemberWithdrawalRequest;
-import com.moais.todo.controller.dto.MemberWithdrawalResponse;
+import com.moais.todo.controller.member.dto.MemberJoinRequest;
+import com.moais.todo.controller.member.dto.MemberJoinResponse;
+import com.moais.todo.controller.member.dto.MemberWithdrawalRequest;
+import com.moais.todo.controller.member.dto.MemberWithdrawalResponse;
 import com.moais.todo.security.AuthorizedMember;
-import com.moais.todo.service.MemberService;
-import com.moais.todo.service.dto.MemberJoinResult;
+import com.moais.todo.service.member.MemberService;
+import com.moais.todo.service.member.dto.MemberJoinResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

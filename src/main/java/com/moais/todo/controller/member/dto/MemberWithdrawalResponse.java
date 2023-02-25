@@ -1,4 +1,4 @@
-package com.moais.todo.controller.dto;
+package com.moais.todo.controller.member.dto;
 
 public class MemberWithdrawalResponse {
 

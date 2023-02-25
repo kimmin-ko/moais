@@ -10,7 +10,7 @@ public final class Jwt {
     private final boolean isValid;
     private String subject;
 
-    Jwt(String token, String secret) {
+    public Jwt(String token, String secret) {
         this.isValid = isJwtValid(token, secret);
     }
 

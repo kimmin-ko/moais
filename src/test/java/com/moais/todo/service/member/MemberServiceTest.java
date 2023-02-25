@@ -1,9 +1,10 @@
-package com.moais.todo.service;
+package com.moais.todo.service.member;
 
 import com.moais.todo.domain.Member;
 import com.moais.todo.persistence.MemberRepository;
-import com.moais.todo.service.dto.MemberJoinCommand;
-import com.moais.todo.service.dto.MemberJoinResult;
+import com.moais.todo.service.member.MemberService;
+import com.moais.todo.service.member.dto.MemberJoinCommand;
+import com.moais.todo.service.member.dto.MemberJoinResult;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

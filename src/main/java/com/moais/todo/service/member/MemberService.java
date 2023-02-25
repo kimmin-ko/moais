@@ -1,10 +1,10 @@
-package com.moais.todo.service;
+package com.moais.todo.service.member;
 
 import com.moais.todo.domain.Member;
 import com.moais.todo.errors.exceptions.NotFoundException;
 import com.moais.todo.persistence.MemberRepository;
-import com.moais.todo.service.dto.MemberJoinCommand;
-import com.moais.todo.service.dto.MemberJoinResult;
+import com.moais.todo.service.member.dto.MemberJoinCommand;
+import com.moais.todo.service.member.dto.MemberJoinResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;

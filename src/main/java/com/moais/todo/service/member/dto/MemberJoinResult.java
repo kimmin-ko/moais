@@ -1,4 +1,4 @@
-package com.moais.todo.service.dto;
+package com.moais.todo.service.member.dto;
 
 import com.moais.todo.domain.Member;
 import lombok.Getter;

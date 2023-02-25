@@ -1,4 +1,4 @@
-package com.moais.todo.security;
+package com.moais.todo.security.filter.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

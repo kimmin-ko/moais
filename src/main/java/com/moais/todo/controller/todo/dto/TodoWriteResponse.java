@@ -1,6 +1,6 @@
-package com.moais.todo.controller.dto;
+package com.moais.todo.controller.todo.dto;
 
-import com.moais.todo.service.dto.TodoWriteResult;
+import com.moais.todo.service.todo.dto.TodoWriteResult;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
